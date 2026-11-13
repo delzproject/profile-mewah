@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>delz. | @del_wae</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;-webkit-tap-highlight-color:transparent}
+body{background:#000;color:#fff;min-height:100vh;overflow-x:hidden}
+.bg{position:fixed;inset:0;z-index:-2;background:#000 url('wallpaper.jpg') center top / cover no-repeat fixed;filter:brightness(.92)}
+.bg::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.15) 0%,rgba(0,0,0,.55) 55%,rgba(0,0,0,.88) 100%)}
+body.music-on .bg{animation:beat .7s infinite}
+@keyframes beat{0%,100%{transform:scale(1)}50%{transform:scale(1.02)}}
+.wrap{max-width:430px;margin:0 auto;padding:18px 18px 60px;position:relative;z-index:1}
+/* GLASS TRANSPARAN */
+.glass{background:rgba(255,255,255,.08)!important;border:1px solid rgba(255,255,255,.18)!important;backdrop-filter:blur(16px) saturate(140%);-webkit-backdrop-filter:blur(16px) saturate(140%);box-shadow:0 8px 32px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.22)}
+.glass-dark{background:rgba(0,0,0,.35)!important;border:1px solid rgba(255,255,255,.15)!important;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 10px 30px rgba(0,0,0,.45)}
+/* BUTTON PRO MAX - KILAU + GLOW + 3D */
+.btn-anim{position:relative;overflow:hidden;transition:transform .14s cubic-bezier(.34,1.56,.64,1),filter .2s,box-shadow .25s;will-change:transform}
+.btn-anim::before{content:'';position:absolute;top:0;left:-80%;width:50%;height:100%;background:linear-gradient(105deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-20deg);animation:shine 3.2s infinite;pointer-events:none;z-index:2}
+@keyframes shine{0%{left:-80%}55%,100%{left:130%}}
+.btn-anim:active{transform:scale(.92) translateY(2px);filter:brightness(1.3);box-shadow:0 2px 10px rgba(255,45,85,.5)}
+.btn-anim::after{content:'';position:absolute;width:160px;height:160px;background:radial-gradient(circle,rgba(255,255,255,.6) 0%,transparent 60%);border-radius:50%;transform:scale(0);opacity:0;pointer-events:none;left:50%;top:50%;margin:-80px 0 0 -80px}
+.btn-anim:active::after{animation:ripple .45s ease-out}
+@keyframes ripple{0%{transform:scale(0);opacity:.9}100%{transform:scale(1.6);opacity:0}}
+.card-anim{transition:transform .18s cubic-bezier(.34,1.56,.64,1),box-shadow .25s,border-color .2s}
+.card-anim:active{transform:scale(.96) translateY(3px);box-shadow:0 12px 32px rgba(255,45,85,.35);border-color:rgba(255,45,85,.7)!important}
+.skeleton{height:72px;border-radius:18px;background:linear-gradient(90deg,rgba(255,255,255,.08) 25%,rgba(255,255,255,.20) 50%,rgba(255,255,255,.08) 75%);background-size:200% 100%;animation:shimmer 1.1s infinite;margin-top:10px;border:1px solid rgba(255,255,255,.12)}
+.skeleton.s{height:48px;border-radius:13px}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+@keyframes spinRing{to{transform:rotate(360deg)}}
+@keyframes pulseDot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.75)}}
+@keyframes eq{0%,100%{height:6px}50%{height:18px}}
+@keyframes drop{0%{transform:scaleY(.4) translateY(-8px);opacity:0}100%{transform:scaleY(1) translateY(0);opacity:1}}
+@keyframes modalIn{0%{transform:scale(.82) translateY(22px);opacity:0}100%{transform:scale(1) translateY(0);opacity:1}}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes enterUp{0%{opacity:0;transform:translateY(22px) scale(.98)}100%{opacity:1;transform:translateY(0) scale(1)}}
+.enter{animation:enterUp .6s cubic-bezier(.22,1,.36,1) both}
+.d1{animation-delay:.05s}.d2{animation-delay:.12s}.d3{animation-delay:.19s}.d4{animation-delay:.26s}.d5{animation-delay:.33s}.d6{animation-delay:.4s}
+@keyframes confettiFall{0%{transform:translateY(0) rotate(0);opacity:1}100%{transform:translateY(420px) rotate(720deg);opacity:0}}
+.confetti{position:fixed;top:35%;z-index:999;pointer-events:none;width:9px;height:14px;border-radius:2px;animation:confettiFall .9s ease-in forwards}
+.top{display:flex;justify-content:space-between;align-items:center}
+.logo{font-weight:900;font-size:20px;letter-spacing:-1px;text-shadow:0 2px 12px rgba(0,0,0,.8)}.logo i{color:#ff2d55;font-style:normal}
+.top-right{display:flex;gap:8px;align-items:center}
+.icon-btn{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#fff;display:flex;align-items:center;justify-content:center;font-size:16px;cursor:pointer;backdrop-filter:blur(10px)}
+.pill{font-size:11px;background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.25);padding:8px 12px;border-radius:100px;backdrop-filter:blur(10px)}
+.pill b{color:#00ff88}
+.profile{text-align:center;margin-top:18px}
+.avatar-wrap{position:relative;width:124px;height:124px;margin:0 auto}
+.avatar-wrap::before{content:'';position:absolute;inset:-5px;border-radius:50%;background:conic-gradient(#ff2d55,#ffb800,#00ff88,#2AABEE,#ff2d55);animation:spinRing 4s linear infinite}
+.avatar-wrap::after{content:'';position:absolute;inset:-1px;border-radius:50%;background:#000}
+.avatar-wrap img{position:relative;z-index:2;width:124px;height:124px;border-radius:50%;object-fit:cover;border:3px solid #000}
+.online{position:absolute;z-index:3;bottom:6px;right:6px;background:rgba(0,0,0,.7);padding:3px 7px 3px 3px;border-radius:100px;display:flex;align-items:center;gap:5px;font-size:10px;font-weight:800;border:1px solid rgba(255,255,255,.3);backdrop-filter:blur(8px)}
+.online i{width:9px;height:9px;background:#00ff88;border-radius:50%;display:block;animation:pulseDot 1.4s infinite}
+.profile h1{font-size:32px;font-weight:900;letter-spacing:-1px;margin-top:12px;text-shadow:0 3px 18px rgba(0,0,0,.9)}.profile h1 span{color:#1da1f2;font-size:20px}
+.handle{color:#ddd;font-size:13px;margin-top:2px;text-shadow:0 2px 8px rgba(0,0,0,.9)}
+.bio{color:#eee;font-size:13px;line-height:1.65;margin:10px auto;max-width:320px;text-shadow:0 2px 10px rgba(0,0,0,.9)}.bio b{color:#fff}
+#swapText{display:inline-block;transition:.3s}
+.chips{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:12px}
+.chips span{font-size:11px;background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.22);padding:7px 11px;border-radius:100px;backdrop-filter:blur(10px)}
+.stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:16px 0}
+.stat{border-radius:18px;padding:13px 6px;text-align:center}
+.stat b{font-size:19px;display:block}
+.stat span{font-size:11px;color:#ddd}
+.music{border-radius:24px;padding:16px;text-align:left}
+.music-head{display:flex;align-items:center;gap:12px}
+.music-head img{width:58px;height:58px;border-radius:14px;object-fit:cover;background:#222;box-shadow:0 8px 20px rgba(0,0,0,.5)}
+.music-head b{font-size:14px;line-height:1.3;display:block}
+.music-head small{color:#ddd;font-size:12px}
+.eq{display:none;gap:3px;align-items:flex-end;height:18px;margin-left:auto}
+.eq i{width:3px;background:#00ff88;border-radius:2px;animation:eq .7s infinite}
+.eq i:nth-child(2){animation-delay:.15s}.eq i:nth-child(3){animation-delay:.3s}.eq i:nth-child(4){animation-delay:.1s}
+.eq.on{display:flex}
+.play{width:54px;height:54px;border-radius:50%;background:#fff;border:none;display:flex;align-items:center;justify-content:center;flex-shrink:0;cursor:pointer;box-shadow:0 0 0 4px rgba(255,255,255,.15),0 10px 28px rgba(255,45,85,.55)}
+.play svg{width:20px;height:20px;fill:#000}
+.progress{height:4px;background:rgba(255,255,255,.22);border-radius:100px;margin-top:14px;overflow:hidden}
+.progress i{display:block;height:100%;background:linear-gradient(90deg,#ff2d55,#ffb800);width:0%;transition:width .3s;border-radius:100px}
+.search{display:flex;gap:8px;margin-top:13px}
+.search input{flex:1;background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.25);color:#fff;padding:12px 14px;border-radius:14px;outline:none;font-size:13px;backdrop-filter:blur(10px)}
+.search input::placeholder{color:#ccc}
+.search input.error{border-color:#ff2d55;animation:shake .4s}
+.search button{background:#fff;color:#000;border:none;padding:0 18px;border-radius:14px;font-weight:900;font-size:13px;box-shadow:0 8px 20px rgba(0,0,0,.4)}
+.song{display:flex;gap:10px;align-items:center;padding:10px;border-radius:14px;cursor:pointer}
+.song:active{background:rgba(255,255,255,.12)}
+.song img{width:44px;height:44px;border-radius:10px}
+.song svg{fill:#fff;flex-shrink:0}
+.status{font-size:12px;color:#7dff9e;margin-top:10px;text-shadow:0 1px 6px rgba(0,0,0,.8)}
+.section-label{font-size:12px;letter-spacing:1.5px;color:#fff;font-weight:800;text-align:left;margin:20px 0 10px;text-shadow:0 2px 10px rgba(0,0,0,.9)}
+.sosmed{display:flex;align-items:center;gap:13px;padding:13px 14px;border-radius:20px;color:#fff;text-decoration:none;margin-top:10px}
+.sosmed .ic{width:46px;height:46px;border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 6px 18px rgba(0,0,0,.4)}
+.sosmed .ic svg{width:22px;height:22px;fill:#fff}
+.sosmed .tx{flex:1;text-align:left;line-height:1.25}
+.sosmed .tx b{font-size:14px;text-shadow:0 1px 6px rgba(0,0,0,.7)}
+.sosmed .tx small{display:block;font-size:11px;color:#e8e8e8;margin-top:2px}
+.sosmed .ar{font-size:20px;color:#fff}
+.tt .ic{background:rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.3)}
+.ig .ic{background:linear-gradient(135deg,rgba(245,133,41,.9),rgba(221,42,123,.9),rgba(129,52,175,.9))}
+.gh .ic{background:rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.3)}
+.tg .ic{background:linear-gradient(135deg,rgba(42,171,238,.9),rgba(29,138,194,.9))}
+.wa .ic{background:linear-gradient(135deg,#25D366,#128C7E)}
+.wa{border-color:rgba(37,211,102,.6)!important;background:linear-gradient(135deg,rgba(37,211,102,.28),rgba(0,0,0,.25))!important}
+.magnetic{transition:transform .2s cubic-bezier(.34,1.56,.64,1)}
+.menu-btn{width:100%;background:rgba(255,255,255,.92);color:#000;border:none;padding:16px;border-radius:20px;font-weight:900;font-size:14px;margin-top:10px;box-shadow:0 10px 28px rgba(0,0,0,.45),0 0 0 1px rgba(255,255,255,.5)}
+.dropdown{display:none;border-radius:22px;padding:15px;margin-top:10px;text-align:left;transform-origin:top;animation:drop .32s cubic-bezier(.34,1.56,.64,1)}
+.dropdown.show{display:block}
+.dropdown h3{font-size:15px}
+.dropdown>p{font-size:12px;color:#ddd;margin:5px 0 6px;line-height:1.6}
+.proj{border-radius:18px;padding:14px;margin-top:11px;text-align:left}
+.proj-top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.proj-top b{font-size:14px;line-height:1.3}
+.proj-top span{font-size:10px;background:#00ff88;color:#000;padding:5px 8px;border-radius:100px;font-weight:900;white-space:nowrap}
+.proj p{font-size:12px;color:#eee;margin:7px 0;line-height:1.55}
+.proj .meta{display:flex;gap:6px;flex-wrap:wrap}
+.proj .meta i{font-style:normal;font-size:11px;background:rgba(0,0,0,.35);padding:5px 9px;border-radius:100px;color:#eee;border:1px solid rgba(255,255,255,.18)}
+.proj a{display:block;text-align:center;padding:12px;border-radius:13px;font-weight:900;font-size:12px;margin-top:10px;text-decoration:none}
+.proj a.web{background:#fff;color:#000;box-shadow:0 8px 20px rgba(0,0,0,.4)}
+.proj a.code{background:rgba(0,0,0,.45);color:#fff;border:1px solid rgba(255,255,255,.25)}
+.showcase{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 2px 10px;scrollbar-width:none}
+.showcase::-webkit-scrollbar{display:none}
+.show-card{min-width:220px;scroll-snap-align:start;border-radius:20px;overflow:hidden;text-align:left}
+.show-card img{width:100%;height:130px;object-fit:cover;display:block}
+.show-card .pad{padding:12px}
+.show-card b{font-size:13px}
+.show-card p{font-size:11px;color:#eee;line-height:1.5;margin:5px 0}
+.show-card a{display:block;text-align:center;background:#fff;color:#000;padding:10px;border-radius:11px;font-weight:800;font-size:12px;text-decoration:none;margin-top:8px}
+.testi{border-radius:18px;padding:13px;margin-top:10px;text-align:left}
+.testi b{font-size:13px}.testi small{color:#ffb800}.testi p{font-size:12px;color:#eee;line-height:1.6;margin-top:6px}
+.price{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:11px}
+.price-card{border-radius:18px;padding:13px 10px;text-align:center;cursor:pointer;position:relative}
+.price-card.hot{border-color:#ff2d55!important;background:linear-gradient(180deg,rgba(255,45,85,.35),rgba(0,0,0,.35))!important}
+.price-card b{font-size:12px}.price-card h3{font-size:17px;margin:6px 0}.price-card p{font-size:11px;color:#eee;line-height:1.5}
+.price-card button{width:100%;background:#fff;color:#000;border:none;padding:10px;border-radius:11px;font-weight:900;font-size:11px;margin-top:9px}
+.price-card.hot button{background:#ff2d55;color:#fff}
+footer{text-align:center;color:#ddd;font-size:11px;margin-top:22px;line-height:1.7;text-shadow:0 2px 8px rgba(0,0,0,.9)}
+.order-page{position:fixed;inset:0;background:rgba(0,0,0,.75);backdrop-filter:blur(12px);z-index:100;overflow-y:auto;display:none;padding:18px}
+.order-page.show{display:block;animation:enterUp .4s both}
+.order-page .inner{max-width:430px;margin:0 auto;padding-bottom:40px}
+.opt{border-radius:18px;padding:14px;margin-top:10px;display:flex;gap:12px;align-items:center;cursor:pointer;text-align:left}
+.opt.sel{border-color:#ff2d55!important;background:rgba(255,45,85,.22)!important}
+.opt input{accent-color:#ff2d55;width:18px;height:18px}
+.opt b{font-size:14px}.opt small{color:#ddd;font-size:11px;display:block;margin-top:2px}
+.field{width:100%;background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.25);color:#fff;padding:13px 14px;border-radius:14px;outline:none;margin-top:10px;font-size:13px;backdrop-filter:blur(10px)}
+.field::placeholder{color:#bbb}
+.total{margin-top:14px;border-radius:16px;padding:14px;display:flex;justify-content:space-between;align-items:center}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.75);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;z-index:200;padding:20px}
+.modal.show{display:flex}
+.modal .box{border-radius:24px;padding:24px;width:100%;max-width:360px;text-align:center;animation:modalIn .35s cubic-bezier(.34,1.56,.64,1)}
+.modal .box button{width:100%;padding:14px;border:none;border-radius:14px;background:#ff2d55;color:#fff;font-weight:900;margin-top:12px}
+.check{width:70px;height:70px;margin:0 auto}
+.check circle{stroke:#00ff88;stroke-width:3;fill:none;stroke-dasharray:200;stroke-dashoffset:200;animation:draw .6s forwards}
+.check path{stroke:#00ff88;stroke-width:4;fill:none;stroke-linecap:round;stroke-dasharray:100;stroke-dashoffset:100;animation:draw .5s .4s forwards}
+.toast{position:fixed;left:50%;bottom:22px;transform:translate(-50%,80px);background:#fff;color:#000;padding:12px 18px;border-radius:100px;font-size:12px;font-weight:800;z-index:300;transition:.35s cubic-bezier(.34,1.56,.64,1);box-shadow:0 12px 30px rgba(0,0,0,.5);white-space:nowrap;max-width:90%;overflow:hidden;text-overflow:ellipsis}
+.toast.show{transform:translate(-50%,0)}
+.sticky-wa{position:fixed;left:50%;transform:translateX(-50%);bottom:16px;z-index:90;background:linear-gradient(135deg,#25D366,#128C7E);color:#fff;border:1px solid rgba(255,255,255,.4);padding:13px 20px;border-radius:100px;font-weight:900;font-size:13px;box-shadow:0 12px 30px rgba(37,211,102,.5),0 0 0 1px rgba(255,255,255,.2);display:flex;gap:8px;align-items:center;backdrop-filter:blur(10px)}
+.sticky-wa svg{width:18px;height:18px;fill:#fff}
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<div class="wrap">
+<div class="top enter"><span class="logo">delz<i>.</i></span><div class="top-right"><span class="pill"><b>●</b> 3 Web Live</span></div></div>
+<div class="profile enter d1">
+<div class="avatar-wrap"><img src="https://picsum.photos/400?random=delz"><div class="online"><i></i> ONLINE</div></div>
+<h1>delz <span>✓</span></h1>
+<div class="handle">@del_wae • @delowph_</div>
+<p class="bio">Anak Cikijing yang suka bikin web kece dari HP.<br><b id="swapText">Lagi bikin web baru</b></p>
+<div class="chips"><span>Cikijing, Jabar</span><span>Frontend</span><span>Music On</span></div>
+</div>
+<div class="stats enter d2">
+<div class="stat glass card-anim"><b>12K</b><span>Followers</span></div>
+<div class="stat glass card-anim"><b>3</b><span>Web Live</span></div>
+<div class="stat glass card-anim"><b>99%</b><span>Kece</span></div>
+</div>
+<div class="music glass card-anim enter d3">
+<div class="music-head">
+<img id="cover" src="https://picsum.photos/200?random=music">
+<div style="flex:1;min-width:0"><b id="songTitle">Pilih Lagu Dulu</b><br><small id="songArtist">Cari lagu bebas - iTunes API</small></div>
+<div class="eq" id="eq"><i></i><i></i><i></i><i></i></div>
+<button class="play btn-anim" onclick="togglePlay()">
+<svg id="iconPlay" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+<svg id="iconPause" viewBox="0 0 24 24" style="display:none"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+</button>
+</div>
+<div class="progress"><i id="prog"></i></div>
+<div class="search"><input id="cariLagu" placeholder="Cari lagu... cth: Ariana Grande"><button class="btn-anim" onclick="cariLagu()">CARI</button></div>
+<div id="songList" style="margin-top:6px;max-height:240px;overflow:auto"></div>
+<div class="status" id="statusText">Ketik judul lagu, pencet CARI, klik lagunya buat play.</div>
+<audio id="audio" preload="none"></audio>
+</div>
+<div class="section-label enter d4">SOSMED GUA — FOLLOW & CHAT</div>
+<div class="enter d4">
+<a class="sosmed glass btn-anim card-anim tt" href="https://tiktok.com/@delowph_" target="_blank" onclick="toast('Membuka TikTok...')"><div class="ic"><svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg></div><div class="tx"><b>TikTok</b><small>@delowph_ • Konten web & daily</small></div><div class="ar">›</div></a>
+<a class="sosmed glass btn-anim card-anim ig" href="https://instagram.com/del_wae" target="_blank" onclick="toast('Membuka Instagram...')"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.64.07-4.85.07s-3.58-.01-4.85-.07c-3.26-.15-4.77-1.7-4.92-4.92C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85C2.38 3.92 3.9 2.38 7.15 2.23 8.42 2.17 8.8 2.16 12 2.16zM12 0C8.74 0 8.33.01 7.05.07 2.7.27.27 2.69.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.2 4.36 2.62 6.78 6.98 6.98C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c4.35-.2 6.78-2.62 6.98-6.98.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95C23.73 2.7 21.31.27 16.95.07 15.67.01 15.26 0 12 0zm0 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84zm0 10.15A4 4 0 1 1 16 12a4 4 0 0 1-4 3.99zm6.4-11.85a1.44 1.44 0 1 0 1.44 1.44 1.44 1.44 0 0 0-1.44-1.44z"/></svg></div><div class="tx"><b>Instagram</b><small>@del_wae • Daily update</small></div><div class="ar">›</div></a>
+<a class="sosmed glass btn-anim card-anim gh" href="https://github.com/delzproject" target="_blank" onclick="toast('Membuka GitHub...')"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 .3a12 12 0 0 0-3.79 23.39c.6.11.82-.26.82-.58v-2c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.33-1.76-1.33-1.76-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.5 1 .1-.78.42-1.31.76-1.61-2.66-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.11-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.65 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.81 5.63-5.49 5.92.43.37.81 1.1.81 2.23v3.3c0 .32.22.7.83.58A12 12 0 0 0 12 .3z"/></svg></div><div class="tx"><b>GitHub</b><small>delzproject • 3 Web Live</small></div><div class="ar">›</div></a>
+<a class="sosmed glass btn-anim card-anim tg" href="https://t.me/ddell11" target="_blank" onclick="toast('Membuka Telegram...')"><div class="ic"><svg viewBox="0 0 24 24"><path d="M9.04 15.31l-.38 5.32c.54 0 .78-.23 1.06-.5l2.55-2.44 5.28 3.87c.97.53 1.66.25 1.92-.9L23.9 3.6c.17-.79-.29-1.1-.81-.9L1.42 10.9c-.78.3-.77.73-.13.92l5.57 1.74 12.86-8.11c.6-.36 1.15-.17.7.23z"/></svg></div><div class="tx"><b>Telegram</b><small>t.me/ddell11 • Chat cepat</small></div><div class="ar">›</div></a>
+<a class="sosmed glass btn-anim card-anim magnetic wa" id="waMain" href="https://wa.me/6283140866873?text=Halo%20Delz!%20Gua%20dari%20link%20bio%20lu" target="_blank" onclick="toast('Membuka WhatsApp...')"><div class="ic"><svg viewBox="0 0 24 24"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.39-1.47-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.5 0 1.47 1.07 2.89 1.22 3.09.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.7.63.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.42-.07-.12-.27-.2-.57-.35zM12.05 21.79h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.9-9.88a9.82 9.82 0 0 1 9.88 9.89c0 5.45-4.44 9.88-9.89 9.88zm8.42-18.3A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.9 11.9 0 0 0 5.68 1.45h.01c6.55 0 11.89-5.34 11.89-11.89 0-3.18-1.24-6.16-3.47-8.42z"/></svg></div><div class="tx"><b>WhatsApp - Chat Gua</b><small>FAST RESPON • Order web disini</small></div><div class="ar">›</div></a>
+</div>
+<div class="section-label enter d5">SHOWCASE — GESER BUAT LIAT WEB GUA</div>
+<div class="showcase enter d5" id="showcase"></div>
+<button class="menu-btn btn-anim enter d5" onclick="toggleMenu()">Lainnya — List Web Del</button>
+<div class="dropdown glass-dark" id="dropdown">
+<h3>List Web Del — LIVE</h3>
+<p>Ini list resmi web gua. Semua udah aktif, bisa langsung dibuka.</p>
+<div id="projectList"><div class="skeleton"></div><div class="skeleton s"></div><div class="skeleton"></div></div>
+</div>
+<div class="section-label enter d6">KATA MEREKA — 10 KOMEN ASLI</div>
+<div class="enter d6" id="testiList"></div>
+<div class="section-label">HARGA — PILIH PAKET</div>
+<div class="price">
+<div class="price-card glass card-anim" onclick="selectPrice('BASIC 15K',15000)"><b>BASIC</b><h3>15K</h3><p>Link Bio<br>Musik + Sosmed<br>Jadi 1 Hari</p><button class="btn-anim">PILIH</button></div>
+<div class="price-card glass hot card-anim" onclick="selectPrice('PRO 30K',30000)"><b>PRO • PALING LARIS</b><h3>30K</h3><p>Semua Basic<br>+ Showcase + Testimoni<br>+ Animasi Pro Max</p><button class="btn-anim">PILIH</button></div>
+<div class="price-card glass card-anim" onclick="selectPrice('SULTAN 50K',50000)"><b>SULTAN</b><h3>50K</h3><p>Semua Pro<br>+ Web Custom<br>+ Domain .com</p><button class="btn-anim">PILIH</button></div>
+</div>
+<button class="menu-btn btn-anim" style="background:#ff2d55;color:#fff;border:1px solid rgba(255,255,255,.4)" onclick="openOrder()">ORDER SEKARANG — BUKA ORDER PAGE</button>
+<footer>© 2026 DELZ • Made in Cikijing<br>Tap WA buat order web kayak gini - mulai 15K</footer>
+</div>
+<div class="order-page" id="orderPage"><div class="inner"><div style="display:flex;justify-content:space-between;align-items:center"><h2>Order Web</h2><button onclick="closeOrder()" style="background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.3);width:38px;height:38px;border-radius:50%;font-size:16px">✕</button></div><p style="color:#ccc;font-size:13px;margin:8px 0">Isi dulu, langsung ke WA otomatis.</p><label style="font-size:12px;color:#ddd">1. Pilih Paket</label><div class="opt glass-dark sel" onclick="pickOpt(this,'BASIC 15K',15000)"><input type="radio" name="paket" checked><div><b>BASIC — 15K</b><small>Link bio + musik + sosmed</small></div></div><div class="opt glass-dark" onclick="pickOpt(this,'PRO 30K',30000)"><input type="radio" name="paket"><div><b>PRO — 30K • PALING LARIS</b><small>+ Showcase + Testimoni + Pro Max</small></div></div><div class="opt glass-dark" onclick="pickOpt(this,'SULTAN 50K',50000)"><input type="radio" name="paket"><div><b>SULTAN — 50K</b><small>+ Web custom + domain</small></div></div><label style="font-size:12px;color:#ddd;display:block;margin-top:14px">2. Nama Lu</label><input class="field" id="orderNama" placeholder="Cth: Raka"><label style="font-size:12px;color:#ddd;display:block;margin-top:10px">3. Nama IG / TikTok Lu</label><input class="field" id="orderIg" placeholder="Cth: @raka_wae"><label style="font-size:12px;color:#ddd;display:block;margin-top:10px">4. Mau warna apa?</label><input class="field" id="orderWarna" placeholder="Cth: Merah hitam kayak Delz"><div class="total glass-dark"><span>Total</span><b id="orderTotal" style="font-size:18px">Rp 15.000</b></div><button onclick="checkout()" class="btn-anim" style="width:100%;background:#25D366;color:#fff;border:1px solid rgba(255,255,255,.4);padding:15px;border-radius:16px;font-weight:900;margin-top:12px">KIRIM KE WA DELZ</button><p style="font-size:11px;color:#aaa;text-align:center;margin-top:10px">Bayar via DANA / GoPay / Transfer • DP 50% dulu gapapa</p></div></div>
+<div class="modal" id="modal"><div class="box glass-dark"><div id="modalAwal"><h2>Mau Web Kayak Gini?</h2><p style="color:#ccc;font-size:13px;margin:8px 0;line-height:1.6">Gua bikinin link bio + musik + project kayak gini buat lu. Cuma 15K, jadi 1 hari.</p><button class="btn-anim" onclick="openOrder()">BUKA ORDER PAGE</button><button onclick="closeModal()" style="background:rgba(255,255,255,.15)">TUTUP</button></div><div id="modalSukses" style="display:none"><svg class="check" viewBox="0 0 80 80"><circle cx="40" cy="40" r="35"></circle><path d="M25 41 L35 51 L55 30"></path></svg><h2 style="margin-top:10px">Siap!</h2><p style="color:#ccc;font-size:13px">Link WA udah kebuka, tinggal chat gua aja.</p><button onclick="closeModal()" style="background:rgba(255,255,255,.15)">OKE</button></div></div></div>
+<div class="toast" id="toast">Membuka...</div>
+<button class="sticky-wa btn-anim" onclick="openOrder()"><svg viewBox="0 0 24 24"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.39-1.47-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.5 0 1.47 1.07 2.89 1.22 3.09.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.7.63.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.42-.07-.12-.27-.2-.57-.35z"/></svg> ORDER 15K</button>
+<script>
+let audio=document.getElementById('audio'),isPlaying=false,currentSong=null,selectedPaket='BASIC 15K',selectedHarga=15000;
+let texts=["Lagi bikin web baru","Lagi gabut, chat aja","Music on, dunia off","Follow IG gua @del_wae"],ti=0;
+setInterval(()=>{let el=document.getElementById('swapText');el.style.filter='blur(5px)';el.style.opacity='0';setTimeout(()=>{ti=(ti+1)%texts.length;el.innerText=texts[ti];el.style.filter='blur(0)';el.style.opacity='1'},280)},3200);
+function toast(msg){let t=document.getElementById('toast');t.innerText=msg;t.classList.add('show');clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove('show'),2200);}
+function confetti(){let colors=['#ff2d55','#ffb800','#00ff88','#2AABEE','#fff'];for(let i=0;i<28;i++){let c=document.createElement('div');c.className='confetti';c.style.background=colors[i%colors.length];c.style.left=(30+Math.random()*40)+'%';c.style.animationDelay=(Math.random()*0.25)+'s';document.body.appendChild(c);setTimeout(()=>c.remove(),1200);}}
+function toggleMenu(){let d=document.getElementById('dropdown');d.classList.toggle('show');if(d.classList.contains('show'))loadProjects();}
+function openModal(){document.getElementById('modal').classList.add('show')}
+function closeModal(){document.getElementById('modal').classList.remove('show');document.getElementById('modalAwal').style.display='block';document.getElementById('modalSukses').style.display='none'}
+function openOrder(){document.getElementById('orderPage').classList.add('show');window.scrollTo(0,0);toast('Order Page dibuka');}
+function closeOrder(){document.getElementById('orderPage').classList.remove('show');}
+function pickOpt(el,name,harga){document.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));el.classList.add('sel');el.querySelector('input').checked=true;selectedPaket=name;selectedHarga=harga;document.getElementById('orderTotal').innerText='Rp '+harga.toLocaleString('id-ID');}
+function selectPrice(name,harga){openOrder();let opts=document.querySelectorAll('.opt');if(name.includes('BASIC'))pickOpt(opts[0],name,harga);if(name.includes('PRO'))pickOpt(opts[1],name,harga);if(name.includes('SULTAN'))pickOpt(opts[2],name,harga);}
+function checkout(){let nama=document.getElementById('orderNama').value.trim()||'Belum isi nama';let ig=document.getElementById('orderIg').value.trim()||'-';let warna=document.getElementById('orderWarna').value.trim()||'Bebas, kayak Delz aja';confetti();setTimeout(()=>{window.open('https://wa.me/6283140866873?text='+encodeURIComponent('Halo Delz! Mau order web.\nPaket: '+selectedPaket+'\nNama: '+nama+'\nIG/TikTok: '+ig+'\nWarna: '+warna),'_blank');toast('Membuka WhatsApp...');},600);}
+function setPlayIcon(on){document.getElementById('iconPlay').style.display=on?'none':'block';document.getElementById('iconPause').style.display=on?'block':'none';document.getElementById('eq').classList.toggle('on',on);document.body.classList.toggle('music-on',on);}
+async function cariLagu(){
+  let q=document.getElementById('cariLagu').value.trim(),input=document.getElementById('cariLagu');
+  if(!q){input.classList.add('error');setTimeout(()=>input.classList.remove('error'),500);document.getElementById('statusText').innerText='Ketik dulu judul lagunya!';return;}
+  document.getElementById('statusText').innerText='Lagi nyari "'+q+'" ...';
+  document.getElementById('songList').innerHTML='<div class="skeleton s"></div><div class="skeleton s"></div>';
+  try{
+    let res=await fetch('https://itunes.apple.com/search?term='+encodeURIComponent(q)+'&media=music&limit=8&country=ID');
+    let data=await res.json();
+    let list=document.getElementById('songList');list.innerHTML='';
+    if(!data.results.length){document.getElementById('statusText').innerText='Gak ketemu, coba kata lain.';return}
+    data.results.forEach(s=>{let d=document.createElement('div');d.className='song card-anim';d.innerHTML=`<img src="${s.artworkUrl100}"><div style="flex:1;text-align:left"><b style="font-size:13px">${s.trackName}</b><br><small style="color:#ddd;font-size:11px">${s.artistName}</small></div><svg width="18" height="18" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>`;d.onclick=()=>playSong(s);list.appendChild(d);});
+    document.getElementById('statusText').innerText='Ketemu '+data.results.length+' lagu. Klik buat play.';
+  }catch(e){document.getElementById('statusText').innerText='Gagal, cek internet lu.';}
+}
+function playSong(s){currentSong=s;document.getElementById('cover').src=s.artworkUrl100.replace('100x100','600x600');document.getElementById('songTitle').innerText=s.trackName;document.getElementById('songArtist').innerText=s.artistName;audio.src=s.previewUrl;audio.play();isPlaying=true;setPlayIcon(true);confetti();document.getElementById('statusText').innerText='Now Playing: '+s.trackName+' - '+s.artistName;}
+function togglePlay(){if(!currentSong){cariLagu();return}if(isPlaying){audio.pause();isPlaying=false;setPlayIcon(false);}else{audio.play();isPlaying=true;setPlayIcon(true);}}
+audio.ontimeupdate=()=>{if(audio.duration){document.getElementById('prog').style.width=(audio.currentTime/audio.duration*100)+'%'}};
+audio.onended=()=>{isPlaying=false;setPlayIcon(false);document.getElementById('prog').style.width='0%';};
+let waBtn=document.getElementById('waMain');
+waBtn.addEventListener('touchmove',e=>{let t=e.touches[0],r=waBtn.getBoundingClientRect();let dx=(t.clientX-(r.left+r.width/2))*0.15,dy=(t.clientY-(r.top+r.height/2))*0.15;waBtn.style.transform=`translate(${dx}px,${dy}px)`;});
+waBtn.addEventListener('touchend',()=>{setTimeout(()=>waBtn.style.transform='',200);});
+let projects=[
+  {no:1,name:'Cek Link Phising',desc:'Cek link phising / penipuan sebelum lu klik. Wajib buat anak sekolah biar gak kena tipu.',lang:'HTML',star:0,web:'https://delzproject.github.io/cek-link-phising/',code:'https://github.com/delzproject/cek-link-phising',img:'https://picsum.photos/400/250?random=cek'},
+  {no:2,name:'Delz Project',desc:'Kumpulan semua project Delz. Pusatnya semua web gua.',lang:'HTML',star:0,web:'https://delzproject.github.io/-delz-project/',code:'https://github.com/delzproject/-delz-project',img:'https://picsum.photos/400/250?random=delz2'},
+  {no:3,name:'Foto to JPG',desc:'Ubah foto PNG / WEBP / HEIC jadi .JPG asli dalam 1 detik, tanpa upload.',lang:'HTML',star:1,web:'https://delzproject.github.io/foto-to-jpg2/',code:'https://github.com/delzproject/foto-to-jpg2',img:'https://picsum.photos/400/250?random=jpg'},
+];
+let show=document.getElementById('showcase');
+projects.forEach(p=>{let d=document.createElement('div');d.className='show-card glass card-anim';d.innerHTML=`<img src="${p.img}"><div class="pad"><b>${p.no}. ${p.name}</b><p>${p.desc}</p><a href="${p.web}" target="_blank" onclick="toast('Membuka ${p.name}...')">BUKA WEB-NYA</a></div>`;show.appendChild(d);});
+let loaded=false;
+function loadProjects(){
+  if(loaded) return; loaded=true;
+  let box=document.getElementById('projectList');box.innerHTML='';
+  projects.forEach(p=>{
+    let div=document.createElement('div');div.className='proj glass-dark card-anim';
+    div.innerHTML=`<div class="proj-top"><b>${p.no}. ${p.name}</b><span>LIVE</span></div><p>${p.desc}</p><div class="meta"><i>${p.lang}</i><i>Star ${p.star}</i><i>Public</i></div><a class="web btn-anim" href="${p.web}" target="_blank">BUKA WEB-NYA</a><a class="code btn-anim" href="${p.code}" target="_blank">LIHAT CODE DI GITHUB</a>`;
+    box.appendChild(div);
+  });
+}
+// KOMEN BANYAK - TANPA FADEL
+let komens=[
+  {n:'Raka • Cikijing',t:'Gila webnya cepet banget jadinya, sehari langsung jadi. Link bio gua sekarang kece parah.'},
+  {n:'Sinta • Majalengka',t:'Delz fast respon banget, ditanya jam 1 malem masih dibales. Worth it 15K.'},
+  {n:'Dimas • Kuningan',t:'Awalnya kira abal-abal, ternyata webnya beneran jalan + musiknya bisa ganti-ganti. Mantap.'},
+  {n:'Ayu • Cirebon',t:'Udah order 2x, yang pertama link bio, yang kedua web jualan. Dua-duanya bagus.'},
+  {n:'Rizky • Bandung',t:'Temen-temen gua pada nanya bikin dimana. Gua langsung kasih nomor Delz.'},
+  {n:'Nadia • Jakarta',t:'Designnya gak pasaran, transparan + wallpapernya nyatu. Kayak web luar negeri.'},
+  {n:'Bimo • Cikijing',t:'Harga 15K tapi rasanya kayak web 200K. Animasi buttonnya nagih banget dipencet.'},
+  {n:'Zahra • Majalengka',t:'Cek link phisingnya nolongin gua banget, hampir ketipu link giveaway. Thank you Delz!'},
+  {n:'Andre • Cikijing',t:'Order jam 8 malem, jam 11 udah jadi. Gila sih cepetnya.'},
+  {n:'Putri • Kuningan',t:'Paling suka bagian musiknya, bisa cari lagu bebas. Temen gua sampe betah buka link gua.'},
+];
+let tl=document.getElementById('testiList');
+komens.forEach(k=>{let d=document.createElement('div');d.className='testi glass card-anim';d.innerHTML=`<b>${k.n}</b> <small>★★★★★</small><p>"${k.t}"</p>`;tl.appendChild(d);});
+</script>
+</body>
+</html>
